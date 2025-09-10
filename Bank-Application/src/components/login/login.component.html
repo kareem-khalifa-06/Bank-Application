@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="login-page">
+    <div class="login-box">
+        <div class="brand">
+            <i class="fa-solid fa-shield-halved brand-icon"></i>
+           SecureBank
+        </div>
+        <p>Sign in to access your account dashboard</p>
+
+       <form action="" [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="mb-3">
+            <label for="Username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="Username" placeholder="Enter your username" formControlName="Username">
+        </div>
+        <div class="mb-3">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password" placeholder="Enter your Password" formControlName="Password" #passwordInput>
+        </div>
+       <button class="btn btn-primary">Sign in</button>
+
+       </form>
+       <div class="Demo">
+        <div class="demo-title">Demo Credentials:
+        </div>
+        <div class="cred bg-white">
+            <span class="blue circle"></span>
+            <span>Admin:admin/admin123</span>
+        </div>
+        <div class="cred bg-white">
+            <span class="Green circle"></span>
+            <span>User:kareem/Kareem123!</span>
+        </div>
+
+       </div>
+    </div>
+</div>

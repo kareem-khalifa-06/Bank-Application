@@ -1,12 +1,53 @@
-import { Component } from '@angular/core';
+
+
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
+  standalone: true,
+  imports: [ReactiveFormsModule]
 })
 export class LoginComponent {
+constructor(
+  private _Formbuilder:FormBuilder,
+  private _Router:Router,
+private _AuthService:AuthService){}
+  loginForm:FormGroup=this._Formbuilder.group({
+    Username:[null,[Validators.required]],
+    Password:[null,[Validators.required]]
+  });
+  submit():void{
+    if(this.loginForm.valid){
+     this._AuthService.getAllUsers();
+     if(this._AuthService.login(this.loginForm.value.Username,this.loginForm.value.Password)){
+      const role=this._AuthService.getRole();
+      if(role==='Admin'){
+this._Router.navigate(['/admin/home']);
+      }
+      if(role==='User'){
+this._Router.navigate(['/user/home']);
+      }
+     }
+    else{
+      
+      alert('wrong credentials');
+     
+    
+    let p= document.getElementById('Password');
+   
+
+      this._Router.navigate(['/login']);
+    }
+
+  }
+  this.loginForm.reset();
+
+  }
 
 }
