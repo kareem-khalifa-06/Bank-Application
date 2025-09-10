@@ -9,24 +9,26 @@ import { AdminHomeComponent } from '../components/admin-home/admin-home.componen
 
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { AdminDashboardComponent } from '../components/admin-dashboard/admin-dashboard.component';
+import { UserLayoutComponent } from '../layouts/user-layout/user-layout.component';
+import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
   { path: '', redirectTo:'login',pathMatch:'full' },
   { path: 'login', component: LoginComponent },
 
   {
-    path: 'user',canActivate:[authGuard],
+    path: 'user',canActivate:[authGuard],component:UserLayoutComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'home',pathMatch:'full' },
       { path: 'home', component: UserHomeComponent },
       { path: 'account', component: UserAccountComponent },
-      { path: 'transaction', component: UserTransactionComponent },
+      { path: 'transactions', component: UserTransactionComponent },
       { path: 'transfer', component: UserTransferComponent },
     ],
   },
 
   {
-    path: 'admin',canActivate:[authGuard],
+    path: 'admin',canActivate:[authGuard],component:AdminLayoutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: AdminHomeComponent },

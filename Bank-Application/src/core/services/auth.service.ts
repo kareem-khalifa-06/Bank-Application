@@ -29,6 +29,16 @@ export class AuthService {
     }
     return false;
   }
+  getUserName():string|null{
+    const user=localStorage.getItem('currentUser')
+    if(user){
+      const userData=JSON.parse(user);
+      const userName=userData.username;
+      return userName
+    }
+    else return null
+   
+  }
 
   logout(): void {
     localStorage.removeItem('currentUser');
