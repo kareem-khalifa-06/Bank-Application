@@ -9,8 +9,8 @@ export class UserService {
   users: User[] = [
     {
       id: '1',
-      username: 'john_doe',
-      password: 's3cur3P@ss1',
+      username: 'Abdelrahman',
+      password: 'Abdelrahman123!',
       role: Role.User,
       isActive: true,
       email: 'john.doe@example.com',
@@ -63,8 +63,8 @@ export class UserService {
     },
     {
       id: '7',
-      username: 'robert_k',
-      password: 'R0b3rtK!',
+      username: 'khadija',
+      password: 'Khadija123!',
       role: Role.User,
       isActive: true,
       email: 'robert.k@example.com',

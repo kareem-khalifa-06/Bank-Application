@@ -1,9 +1,4 @@
-.flexc{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .icon{
     border-radius: 50%;
