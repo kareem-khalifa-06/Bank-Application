@@ -95,7 +95,7 @@ export class UserService {
       role: Role.Admin,
       isActive: true,
       email: 'support@bank.com',
-      phone: '+15552223333',
+      phone: '+1555222333',
     },
     {
       id: '11',
