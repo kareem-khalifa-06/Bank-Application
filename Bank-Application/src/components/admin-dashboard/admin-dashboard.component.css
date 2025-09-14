@@ -1,0 +1,49 @@
+img{
+    height:16px;
+    width:16px;}
+ button{
+    padding:2px 15px;
+    color:white;
+    height:45px; 
+
+    }
+p{
+    color: gray;
+}
+.action-buttons{
+    color:black;
+    font:bold;
+    border: 1px solid ;
+}
+.table tr {
+    height: 60px;
+    
+}
+.tex{
+    text-align: start;
+}
+.active-user{
+    color:white;
+    background-color: blue;
+    border-radius: 10px;
+    text-align: center;
+    font: bold;
+}
+.inactive-user, .admin{
+    color: white;
+        background-color: red;
+        border-radius: 10px;
+        text-align: center;
+        font: bold;
+}
+.user{
+    color: white;
+        background-color: green;
+        border-radius: 10px;
+        text-align: center;
+        font: bold;
+}
+.user-managment{
+    border-radius: 25px;
+    margin-bottom:5px;
+}

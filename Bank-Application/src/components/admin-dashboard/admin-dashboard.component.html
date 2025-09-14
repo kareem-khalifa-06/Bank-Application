@@ -1,1 +1,96 @@
-<p>admin-dashboard works!</p>
+
+<div class="dashboard bg-light mt-0 p-3">
+    <div class="">
+        <div class="d-flex justify-content-between mb-5">
+            <div>
+                <h3>Admin Dashboard</h3>
+                <p>Manage users and system settings</p>
+            </div>
+            <button class="btn btn-primary">
+                <i class="fa-user-plus fa-solid"></i> 
+                Add User</button>
+        </div>
+        <div class="bg-white p-3 user-managment">
+            <div class="d-flex align-items-baseline gap-4">
+                <i class="fa-solid fa-users"></i>
+                <h6>User Management</h6>
+            </div>
+            <p>View and manage all registered users</p>
+            <div>
+                <table class="table  align-middle">
+        
+        
+                    <thead>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th colspan="2">Actions</th>
+        
+                    </thead>
+        
+                    <tbody>
+                        @for(user of usersData;track $index){
+                        <tr class="py-5 px-0">
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.phone}}</td>
+                            @if(user.role==='Admin'){
+                            <td>
+                                <div class="admin">{{user.role}}</div>
+                            </td>
+                            }
+                            @else {
+                            <td>
+                                <div class="user">{{user.role}}</div>
+                            </td>
+                            }
+        
+                            @if(user.isActive){
+                            <td>
+                                <div class="active-user">Active</div>
+                            </td>
+                            <td class="d-flex ">
+        
+                                <button type="button"
+                                    class="btn btn-secondary text-center align-middle bg-light action-buttons" (click)="user.role==='User'&&toggleUserStatus($index)">
+                                    <i class="fa-solid fa-toggle-off  d-inline mx-2"></i>Deactivate</button>
+                            </td>
+        
+        
+        
+                            }
+                            @else {
+                            <td>
+                                <div class="inactive-user">Inactive</div>
+                            </td>
+                            <td class="">
+                                <div class="d-flex flex-row">
+                                    <button type="button" class="btn btn-secondary bg-light action-buttons" (click)="user.role==='User'&&toggleUserStatus($index)">
+                                        <i class="fa-solid fa-toggle-on  mx-2"></i>Activate</button>
+                                </div>
+        
+                            </td>
+        
+        
+                            }
+        
+        
+        
+                            <td class="align-middle">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn bg-light action-buttons"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="btn bg-light action-buttons" (click)="user.role==='User'&&deleteUser($index)"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr> }
+                    </tbody>
+        
+                </table>
+            </div>
+        </div>
+    
+        </div>
+</div>

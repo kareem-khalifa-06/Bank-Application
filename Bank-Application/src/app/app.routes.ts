@@ -32,7 +32,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: AdminHomeComponent },
-      { path: 'panel', component:AdminDashboardComponent },
+      { path: 'admin-panel', component:AdminDashboardComponent },
     ],
   },
 

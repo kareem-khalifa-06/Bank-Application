@@ -16,7 +16,7 @@ img{
 .container-fluid{
     display: flex;
     flex-direction: row;
-    justify-content: space-between !important;
+    
     align-items: center;
     color: white !important;
 }
