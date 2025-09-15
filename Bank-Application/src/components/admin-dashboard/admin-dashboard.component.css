@@ -45,11 +45,12 @@ p{
 }
 .user-managment{
     border-radius: 25px;
+ 
     margin-bottom:5px;
 }
 .dashboard {
     position: relative;
-    /* keep if needed */
+    
 }
 
 .edituserform {

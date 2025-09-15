@@ -11,7 +11,7 @@
       
         amount: number;
       
-        type: 'Debit' | 'Credit';
+        type: 'debit' | 'credit';
       
         description: string;
       
