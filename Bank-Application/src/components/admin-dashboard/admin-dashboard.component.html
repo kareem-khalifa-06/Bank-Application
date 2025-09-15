@@ -6,7 +6,7 @@
                 <h3>Admin Dashboard</h3>
                 <p>Manage users and system settings</p>
             </div>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" (click)="showAddFrom=true">
                 <i class="fa-user-plus fa-solid"></i> 
                 Add User</button>
         </div>
@@ -80,7 +80,7 @@
         
                             <td class="align-middle">
                                 <div class="d-flex justify-content-center gap-2">
-                                    <button class="btn bg-light action-buttons"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="btn bg-light action-buttons" (click)="showEditFrom=true; showEditdata($index)"><i class="fa-solid fa-edit"></i></button>
                                     <button class="btn bg-light action-buttons" (click)="user.role==='User'&&deleteUser($index)"><i
                                             class="fa-solid fa-trash"></i></button>
                                 </div>
@@ -93,4 +93,93 @@
         </div>
     
         </div>
+
+@if(showEditFrom){
+    <div class="container edituserform mb-5">
+        <h5>Edit User</h5>
+        <p>Update user information</p>
+        <form action="" [formGroup]="editUserForm">
+            <div class="d-flex justify-content-between">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                    <input type="text" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com"
+                        formControlName="username">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Password (leave empty to keep current)</label>
+                    <input type="password" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com"
+                        formControlName="password">
+                    </div>
+            </div>
+           
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" formControlName="email">
+            </div>
+            <div class="d-flex justify-content-between">
+            <div class="mb-3 d-inline ">
+                <label for="exampleFormControlInput1" class="form-label">Phone</label>
+                <input type="tel" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com" formControlName="phone">
+            </div>
+            <div class="mb-3 d-inline ">
+                <label for="exampleFormControlInput1" class="form-label">Role</label>
+                <input type="text" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com"
+                formControlName="role">
+            </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-2">
+                <button type="button" class="btn btn-outline-secondary text-black" (click)="showEditFrom=false">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="editUser()">Update User</button>
+            </div>   
+        </form>
+    </div>
+    
+}
+@if(showAddFrom){
+<div class="container edituserform mb-5">
+    <h5>Add New User</h5>
+    <p>create new user account</p>
+    <form action="" [formGroup]="addUserForm">
+        <div class="d-flex justify-content-between">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Username</label>
+                <input type="text" class="form-control w-100" 
+                    placeholder="enter user name" formControlName="username">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Password </label>
+                <input type="password" class="form-control w-100" 
+                    placeholder="enter your password" formControlName="password">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control"  placeholder="name@example.com"
+                formControlName="email">
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 d-inline ">
+                <label for="exampleFormControlInput1" class="form-label">Phone</label>
+                <input type="tel" class="form-control w-100" 
+                    placeholder="011111111111" formControlName="phone">
+            </div>
+            <div class="mb-3 d-inline ">
+                <label for="exampleFormControlInput1" class="form-label">Role</label>
+                <input type="text" class="form-control w-100" 
+                    placeholder="User" formControlName="role">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 mt-2">
+            <button type="button" class="btn btn-outline-secondary text-black" (click)="showAddFrom=false">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="addNewUser()">Add User</button>
+        </div>
+    </form>
+</div>
+
+}
 </div>
