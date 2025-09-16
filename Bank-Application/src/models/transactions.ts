@@ -1,7 +1,7 @@
 
   export  interface Transaction {
 
-        id: number;
+        id: string;
       
         fromAccountNo: string;
       

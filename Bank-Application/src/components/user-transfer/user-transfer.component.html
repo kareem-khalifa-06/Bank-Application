@@ -20,24 +20,33 @@
                     <h6>$ Transfer Details</h6>
                     <p>Enter the transfer information below</p>
                 </div>
-                <form action="">
+                <form action="" [formGroup]="transferForm">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">From Account</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Select source account">              
+                        <select name="fromAccountNo" id="" class="form-control" formControlName="fromAccountNo">
+                            <option [value]="account.accountNo">
+                                {{account.accountNo}}
+                            </option>
+                        </select>          
                    </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">To Account</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Select destination account">              
+                        <select name="fromAccountNo" class="form-control" formControlName="ToAccountNo">
+                            @for(account of accounts; track $index){
+                              <option [value]="account.accountNo">{{account.accountNo}}</option>
+                            }
+                        </select>
                    </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Amount</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="0.00">              
+                        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="0.00" formControlName="amount">              
                    </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Description(optional)</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Transfer Description">              
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Transfer Description" formControlName="description">              
                    </div>
-                   <button class="btn btn-primary w-100">Transfer Funds</button>
+                   <button type="button" class="btn btn-primary w-100" (click)="transferFunds()">Transfer Funds</button>
+                  
                 </form>
             </div>
             <div class=" p-3 hi bg-white m-3 flex-grow-1">
@@ -45,11 +54,11 @@
                 <p>Current balances of your accounts</p>
                 <div class="d-flex justify-content-between account p-3">
                     <div class="d-flex flex-column  ">
-                        <h5>{{account?.accountType}}</h5>
-                        <p>Account ID: {{account?.id}}</p>
+                        <h5>{{account.accountType}}</h5>
+                        <p>Account ID: {{account.id}}</p>
                     </div>
                     <div>
-                        <h5>{{account?.balance|currency}}</h5>
+                        <h5>{{account.balance|currency}}</h5>
                     </div>
                    
                     

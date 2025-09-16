@@ -6,7 +6,7 @@ import { Transaction } from '../models/transactions';
   standalone: true
 })
 export class FilterTransactionsPipe implements PipeTransform {
-  transform(transactions: Transaction[] | null, filterType: string, searchTerm: string): Transaction[] {
+  transform(transactions: Transaction[] | null, filterType: string, searchTerm: string, accountNumber: string|undefined): Transaction[] {
     if (!transactions) {
       return [];
     }
@@ -23,6 +23,9 @@ export class FilterTransactionsPipe implements PipeTransform {
       filteredTransactions = filteredTransactions.filter(transaction =>
         transaction.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
+    }
+    if(accountNumber){
+      filteredTransactions=filteredTransactions.filter(transaction=>transaction.fromAccountNo===accountNumber||transaction.ToAccountNo===accountNumber);
     }
 
     return filteredTransactions;

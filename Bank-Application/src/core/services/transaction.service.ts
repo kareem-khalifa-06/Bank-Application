@@ -13,5 +13,12 @@ base_url='http://localhost:3000/';
     return this._HttpClient.get<Transaction[]>(this.base_url+'Transaction');
      
 }
+makeNewTransaction(newTransaction: Transaction): Observable<Transaction> {
+  return this._HttpClient.post<Transaction>(
+    this.base_url + 'Transaction',
+    newTransaction
+  );
+}
+
 
 }
