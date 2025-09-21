@@ -63,8 +63,8 @@ export class UserService {
     },
     {
       id: '7',
-      username: 'khadija',
-      password: 'Khadija123!',
+      username: 'aliceee',
+      password: 'Alicee123!',
       role: Role.User,
       isActive: true,
       email: 'robert.k@example.com',

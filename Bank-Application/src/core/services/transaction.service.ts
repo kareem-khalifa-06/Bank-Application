@@ -19,6 +19,8 @@ makeNewTransaction(newTransaction: Transaction): Observable<Transaction> {
     newTransaction
   );
 }
-
+deleteTransaction(id: string): Observable<void> {
+  return this._HttpClient.delete<void>(`https://68a063076e38a02c58188d9c.mockapi.io/bankingsystem/Transaction/${id}`);
+}
 
 }

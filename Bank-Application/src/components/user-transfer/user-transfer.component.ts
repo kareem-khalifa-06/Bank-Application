@@ -15,6 +15,7 @@ import { TransactionService } from '../../core/services/transaction.service';
   providers:[DatePipe]
 })
 export class UserTransferComponent {
+  tId:number=45;
   userId!:number;
   constructor(private _AccountService:AccountService,private _FormBuilder:FormBuilder,private _TransactionService:TransactionService, private _DatePipe:DatePipe){}
   account!:Account;
@@ -44,7 +45,7 @@ transferForm:FormGroup=this._FormBuilder.group({
   amount:['',[Validators.required]],
   description:['']
 });
-id:number=45;
+
 newTransaction!:Transaction;
 todayDate=new Date();
 formatedDate=this._DatePipe.transform(this.todayDate,
@@ -52,7 +53,7 @@ formatedDate=this._DatePipe.transform(this.todayDate,
 )
 transferFunds():void{
   if(this.transferForm.valid){
-    this.id=this.id+1
+    this.tId+=1;
   console.log(this.transferForm.value);
   this.newTransaction={
     ToAccountNo:this.transferForm.value.ToAccountNo,
@@ -61,21 +62,20 @@ transferFunds():void{
    date:this.todayDate,
    type:'credit',
    description:this.transferForm.value.description,
-   id:this.id.toString()
+   id:this.tId.toString()
 
   }
   if(this.transferForm.value.amount<=this.account?.balance){
   this._TransactionService.makeNewTransaction(this.newTransaction).subscribe({
     next:()=>{
-      const updatedUser:Account={
-        id:this.userId.toString(),
-        accountNo:this.account.accountNo,
-        accountType:this.account.accountType,
+      const updatedSender:Account={
+     ...this.account,
         balance:(this.account.balance-this.newTransaction.amount),
        userId:this.userId
 
       }
-      this._AccountService.updateUser(updatedUser, this.userId).subscribe({
+
+      this._AccountService.updateUser(updatedSender, this.userId).subscribe({
         next: (res) => {
           this.account = res; 
         },
@@ -84,7 +84,28 @@ transferFunds():void{
         }
       });
     }
+
   })
+  this._AccountService.getAllAccounts().subscribe({
+    next:(acc)=>{
+      const receiver=acc.find((ac)=>ac.accountNo===this.newTransaction.ToAccountNo);
+      if(receiver){
+        const updatedReceiver: Account = {
+          ...receiver,
+          balance: receiver.balance + this.newTransaction.amount
+        };
+  
+        this._AccountService.updateUser(updatedReceiver, receiver.userId).subscribe({
+          next: (res) => {
+            console.log('Receiver updated:', res);
+          },
+          error: (err) => {
+            console.error('Failed to update receiver:', err);
+          }
+        });
+      }
+    }
+  });
   
 }
 else{

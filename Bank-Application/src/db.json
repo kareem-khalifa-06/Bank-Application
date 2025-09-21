@@ -4,7 +4,7 @@
       "id": "1",
       "accountNo": "ACC1001",
       "accountType": "savings",
-      "balance": 3900,
+      "balance": 105000,
       "userId": "1"
     },
     {
@@ -46,7 +46,7 @@
       "id": "7",
       "userId": "7",
       "accountNo": "ACC7001",
-      "balance": 6800,
+      "balance": 151800,
       "accountType": "checking"
     },
     {
@@ -221,7 +221,7 @@
       "id": "32",
       "userId": "32",
       "accountNo": "ACC32001",
-      "balance": 5300,
+      "balance": 9914300,
       "accountType": "checking"
     }
   ],
@@ -633,100 +633,19 @@
     },
     {
       "id": "46",
-      "ToAccountNo": "admin",
-      "fromAccountNo": "Kareem Khalifa",
-      "amount": "1000",
-      "date": "2025-09-16T10:26:45.191Z",
+      "ToAccountNo": "ACC7001",
+      "fromAccountNo": "ACC32001",
+      "amount": 1000,
+      "date": "2025-09-17T09:43:53.261Z",
       "type": "credit",
-      "description": ""
+      "description": "demo transaction"
     },
     {
       "id": "46",
-      "ToAccountNo": "ACC6001",
-      "fromAccountNo": "ACC1001",
-      "amount": "10000",
-      "date": "2025-09-16T10:28:08.133Z",
-      "type": "credit",
-      "description": "hello"
-    },
-    {
-      "id": "47",
-      "ToAccountNo": "ACC6001",
-      "fromAccountNo": "ACC1001",
-      "amount": "10000",
-      "date": "2025-09-16T10:28:08.133Z",
-      "type": "credit",
-      "description": "hello"
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "",
-      "fromAccountNo": "",
-      "amount": "100000",
-      "date": "2025-09-16T10:38:01.988Z",
-      "type": "credit",
-      "description": ""
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "",
-      "fromAccountNo": "",
-      "amount": "100",
-      "date": "2025-09-16T10:47:24.047Z",
-      "type": "credit",
-      "description": ""
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "",
-      "fromAccountNo": "",
-      "amount": "100",
-      "date": "2025-09-16T10:49:30.132Z",
-      "type": "credit",
-      "description": ""
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "",
-      "fromAccountNo": "",
-      "amount": "100",
-      "date": "2025-09-16T11:18:22.350Z",
-      "type": "credit",
-      "description": ""
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "",
-      "fromAccountNo": "",
-      "amount": "1000",
-      "date": "2025-09-16T11:22:43.082Z",
-      "type": "credit",
-      "description": ""
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "",
-      "fromAccountNo": "",
-      "amount": "100",
-      "date": "2025-09-16T11:44:18.342Z",
-      "type": "credit",
-      "description": ""
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "",
-      "fromAccountNo": "",
-      "amount": "1000",
-      "date": "2025-09-16T11:45:47.422Z",
-      "type": "credit",
-      "description": ""
-    },
-    {
-      "id": "46",
-      "ToAccountNo": "ACC2001",
-      "fromAccountNo": "ACC1001",
-      "amount": 100,
-      "date": "2025-09-16T12:24:46.192Z",
+      "ToAccountNo": "ACC1001",
+      "fromAccountNo": "ACC32001",
+      "amount": 100000,
+      "date": "2025-09-21T15:10:49.510Z",
       "type": "credit",
       "description": ""
     }
