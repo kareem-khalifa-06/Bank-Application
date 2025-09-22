@@ -23,5 +23,8 @@ export class AccountService {
   updateUser(user:Account,id:number):Observable<Account>{
     return this._HttpClient.put<Account>(this.base_url+`Account/${id}`,user)
   }
+  deleteUser(id:number):Observable<Account>{
+    return this._HttpClient.delete<Account>(this.base_url+`Account/${id}`)
+  }
 }
 

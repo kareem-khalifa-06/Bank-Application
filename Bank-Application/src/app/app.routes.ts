@@ -14,11 +14,15 @@ import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.compo
 
 export const routes: Routes = [
   { path: '', redirectTo:'login',pathMatch:'full' },
-  { path: 'login', component: LoginComponent,title:'Login' },
+  { path: 'login', loadComponent:()=>import('./../components/login/login.component').then(m=>
+    m.LoginComponent
+  ),title:'Login' },
 
   {
-    path: 'user',canActivate:[authGuard],component:UserLayoutComponent,
-    children: [
+    path: 'user',canActivate:[authGuard],loadComponent:()=>import('./../layouts/user-layout/user-layout.component').then(m=>
+    m.UserLayoutComponent
+  ),
+    loadChildren:()=> [
       { path: '', redirectTo: 'home',pathMatch:'full' },
       { path: 'home', component: UserHomeComponent ,title:'Home Page'},
       { path: 'account', component: UserAccountComponent, title:'Acount Overview' },
@@ -28,13 +32,17 @@ export const routes: Routes = [
   },
 
   {
-    path: 'admin',canActivate:[authGuard],component:AdminLayoutComponent,
-    children: [
+    path: 'admin',canActivate:[authGuard],loadComponent:()=>import('./../layouts/admin-layout/admin-layout.component').then(m=>
+      m.AdminLayoutComponent
+    ),
+    loadChildren:()=>[
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: AdminHomeComponent ,title:'Home Page'},
       { path: 'admin-panel', component:AdminDashboardComponent, title:'Dashboard'},
     ],
   },
 
-  { path: '**', component: NotFoundComponent,title:'not Found'},
+  { path: '**', loadComponent:()=>import('./../components/not-found/not-found.component').then(m=>
+    m.NotFoundComponent
+  ),title:'not Found'},
 ];

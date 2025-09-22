@@ -2,6 +2,7 @@ import { User } from './../../models/user';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UserService } from '../../core/services/user.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AccountService } from '../../core/services/account.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AdminDashboardComponent {
   showEditFrom=false;
 showAddFrom=false;
 constructor(public _UserService:UserService,
-  private formBuilder:FormBuilder
+  private formBuilder:FormBuilder,private _AccountService:AccountService
 ){
   this.initializeForms();
   
@@ -29,6 +30,7 @@ deleteUser(i:number):void{
   if(confirm('are you sure you want to delete this user')){
     this.usersData.splice(i,1);
     this.saveToStorage();
+    this._AccountService.deleteUser(i);
     console.log(this.usersData);
   }
   this._UserService.users=this.usersData;
