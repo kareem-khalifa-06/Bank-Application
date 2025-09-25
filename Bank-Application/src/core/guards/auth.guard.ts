@@ -7,8 +7,8 @@ export const authGuard: CanActivateFn = (): boolean | UrlTree => {
   const router = inject(Router);
 
   if (!auth.isLoggedIn()) {
-  router.parseUrl('/login');
-    return false;
+  router.navigate(['/login']);
+    return true;
   }
   else return true;
 

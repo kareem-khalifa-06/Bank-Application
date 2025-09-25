@@ -23,17 +23,17 @@
                 <form action="" [formGroup]="transferForm">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">From Account</label>
-                        <select name="fromAccountNo" id="" class="form-control" formControlName="fromAccountNo">
-                            <option [value]="account.accountNo">
-                                {{account.accountNo}}
+                        <select title="select" name="fromAccountNo" id="" class="form-control" formControlName="fromAccountNo">
+                            <option [value]="account?.accountNo">
+                                {{account?.accountNo}}
                             </option>
                         </select>          
                    </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">To Account</label>
-                        <select name="fromAccountNo" class="form-control" formControlName="ToAccountNo">
+                        <select title="select" name="fromAccountNo" class="form-control" formControlName="ToAccountNo">
                             @for(account of accounts; track $index){
-                              <option [value]="account.accountNo">{{account.accountNo}}</option>
+                              <option [value]="account?.accountNo">{{account?.accountNo}}</option>
                             }
                         </select>
                    </div>
@@ -54,11 +54,11 @@
                 <p>Current balances of your accounts</p>
                 <div class="d-flex justify-content-between account p-3">
                     <div class="d-flex flex-column  ">
-                        <h5>{{account.accountType}}</h5>
-                        <p>Account ID: {{account.id}}</p>
+                        <h5>{{account?.accountType}}</h5>
+                        <p>Account ID: {{account?.id}}</p>
                     </div>
                     <div>
-                        <h5>{{account.balance|currency}}</h5>
+                        <h5>{{account?.balance|currency}}</h5>
                     </div>
                    
                     

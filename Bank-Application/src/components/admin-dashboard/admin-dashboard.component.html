@@ -100,15 +100,15 @@
         <p>Update user information</p>
         <form action="" [formGroup]="editUserForm">
             <div class="d-flex justify-content-between">
-                <div class="mb-3">
+                <div class="mb-3 d-inline">
                     <label for="exampleFormControlInput1" class="form-label">Username</label>
-                    <input type="text" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com"
+                    <input type="text" class="form-control " id="exampleFormControlInput1" placeholder="name@example.com"
                         formControlName="username">
                 </div>
                 
-                <div class="mb-3">
+                <div class="mb-3 d-inline">
                     <label for="exampleFormControlInput1" class="form-label">Password (leave empty to keep current)</label>
-                    <input type="password" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com"
+                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
                         formControlName="password">
                     </div>
             </div>

@@ -5,8 +5,14 @@ import { Role, User} from '../../models/user';
   providedIn: 'root',
 })
 export class UserService {
-  constructor() {}
-  users: User[] = [
+  users!:User[]
+  constructor() {
+const saved=localStorage.getItem('users')
+if(saved){
+  this.users=JSON.parse(saved)
+}
+else{
+  this.users = [
     {
       id: '1',
       username: 'Abdelrahman',
@@ -296,4 +302,7 @@ export class UserService {
       phone: '+15556669999',
     },
   ];
+}
+  }
+  
 }

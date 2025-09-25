@@ -9,7 +9,7 @@ import { TransactionService } from '../../core/services/transaction.service';
 @Component({
   selector: 'app-user-transfer',
   standalone: true,
-  imports: [CurrencyPipe,ReactiveFormsModule,DatePipe],
+  imports: [CurrencyPipe,ReactiveFormsModule],
   templateUrl: './user-transfer.component.html',
   styleUrl: './user-transfer.component.css',
   providers:[DatePipe]

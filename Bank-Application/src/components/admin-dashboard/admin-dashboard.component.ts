@@ -29,16 +29,17 @@ usersData=this._UserService.users
 deleteUser(i:number):void{
   if(confirm('are you sure you want to delete this user')){
     this.usersData.splice(i,1);
+    this._AccountService.deleteUser(i).subscribe();
     this.saveToStorage();
-    this._AccountService.deleteUser(i);
+    
     console.log(this.usersData);
   }
-  this._UserService.users=this.usersData;
+  
 
 }
 toggleUserStatus(i:number):void{
   this.usersData[i].isActive=!this.usersData[i].isActive;
-  this._UserService.users=this.usersData;
+  
   this.saveToStorage();
 }
 
@@ -83,9 +84,9 @@ editUser(){
       email:formValue?.email,
       role:formValue?.role,
     }
-    this._UserService.users=this.usersData;
+    
   }
-  this.editUserForm.reset()
+  this.editUserForm.reset();
 
   }
   this.saveToStorage();
@@ -112,7 +113,7 @@ addNewUser() {
     this.saveToStorage();
     this.showAddFrom = false;
     this.addUserForm.reset();
-    this._UserService.users=this.usersData;
+    
   }
 }
 }
