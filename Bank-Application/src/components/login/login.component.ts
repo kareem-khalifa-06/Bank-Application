@@ -18,14 +18,16 @@ constructor(
   private _Formbuilder:FormBuilder,
   private _Router:Router,
 private _AuthService:AuthService){}
+
   loginForm:FormGroup=this._Formbuilder.group({
     Username:[null,[Validators.required]],
     Password:[null,[Validators.required]]
   });
   submit():void{
+    console.log(this._AuthService.login(this.loginForm.value.Username,this.loginForm.value.Password).subscribe());
     if(this.loginForm.valid){
      this._AuthService.getAllUsers();
-     if(this._AuthService.login(this.loginForm.value.Username,this.loginForm.value.Password)){
+     if(this._AuthService.login(this.loginForm.value.Username,this.loginForm.value.Password).subscribe()){
       const role=this._AuthService.getRole();
       if(role==='Admin'){
 this._Router.navigate(['/admin/home']);
@@ -35,19 +37,14 @@ this._Router.navigate(['/user/home']);
       }
      }
     else{
-      
-      alert('wrong credentials');
-     
-    
-    let p= document.getElementById('Password');
-   
 
+      alert('wrong credentials');
       this._Router.navigate(['/login']);
+      this.loginForm.reset();
     }
 
   }
-  this.loginForm.reset();
-
+ 
   }
 
 }

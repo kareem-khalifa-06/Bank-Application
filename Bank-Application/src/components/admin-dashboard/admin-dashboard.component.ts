@@ -18,30 +18,60 @@ export class AdminDashboardComponent {
   addUserForm!:FormGroup;
   showEditFrom=false;
 showAddFrom=false;
+usersData!:User[];
 constructor(public _UserService:UserService,
   private formBuilder:FormBuilder,private _AccountService:AccountService
 ){
   this.initializeForms();
   
 }
-usersData=this._UserService.users
-
-deleteUser(i:number):void{
-  if(confirm('are you sure you want to delete this user')){
-    this.usersData.splice(i,1);
-    this._AccountService.deleteUser(i).subscribe();
-    this.saveToStorage();
-    
-    console.log(this.usersData);
-  }
-  
-
+ngOnInit(): void {
+  this.loadUsers();
 }
+
+loadUsers(): void {
+  this._UserService.getAllUsers().subscribe({
+    next: (res) => {
+      this.usersData = res;
+    },
+    error: (err) => console.error('Failed to load users:', err)
+  });
+}
+
+editUser() {
+  if (this.editUserForm.valid && this.editUserData) {
+    const formValue = this.editUserForm.value;
+    const id = this.editUserData.id;
+    const updatedUser: User = { ...this.editUserData, ...formValue };
+
+    this._UserService.updateUser(updatedUser, id).subscribe({
+      next: () => {
+        this.showEditFrom = false;
+        this.editUserForm.reset();
+        this.loadUsers(); 
+      }
+    });
+  }
+}
+
+
+
+deleteUser(id: number): void {
+  if (confirm('Are you sure you want to delete this user?')) {
+    this._UserService.deleteUser(id).subscribe({
+      next: () => this.loadUsers() 
+    });
+    this._AccountService.deleteUser(id).subscribe({
+      next:()=>{
+        this.loadUsers();
+      }
+    })
+  }
+}
+
 toggleUserStatus(i:number):void{
   this.usersData[i].isActive=!this.usersData[i].isActive;
-  
-  this.saveToStorage();
-}
+  }
 
 initializeForms() {
   this.addUserForm = this.formBuilder.group({
@@ -70,38 +100,13 @@ showEditdata(i:number):void{
   });
   this.editUserData=this.usersData[i];
 }
-editUser(){
-  if(this.editUserForm.valid&&this.editUserData){
-  this.showEditFrom=false;
-  const formValue=this.editUserForm.value;
-  const index = this.usersData.findIndex((u)=> u.id===this.editUserData?.id)
-  if(index>-1){
-    this.usersData[index]={
-      ...this.editUserData,
-      username:formValue?.username,
-      password:formValue?.password,
-      phone:formValue?.phone,
-      email:formValue?.email,
-      role:formValue?.role,
-    }
-    
-  }
-  this.editUserForm.reset();
-
-  }
-  this.saveToStorage();
-}
-saveToStorage() {
-  localStorage.setItem('users', JSON.stringify(this.usersData));
-}
 addNewUser() {
-
-  
+  console.log(this.addUserForm.valid);
   if (this.addUserForm.valid) {
     const formValue = this.addUserForm.value;
-    const id = this.usersData.length;
+  const id=this.usersData.length;
     const newUser: User = {
-      id: id.toString(),
+      id:id,
       username: formValue.username,
       password: formValue.password,
       role: formValue.role,
@@ -109,13 +114,21 @@ addNewUser() {
       email: formValue.email,
       phone: formValue.phone
     };
-    this.usersData.push(newUser);
-    this.saveToStorage();
-    this.showAddFrom = false;
-    this.addUserForm.reset();
-    
+
+    this._UserService.addUser(newUser).subscribe({
+      next: () => {
+        this.showAddFrom = false;
+        this.addUserForm.reset();
+        this.loadUsers(); 
+      },
+      error: (err) => console.error('Failed to add user:', err)
+    });
+  }
+  else{
+    alert('invalid Form');
   }
 }
+
 }
 
 
